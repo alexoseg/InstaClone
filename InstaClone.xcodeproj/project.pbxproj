@@ -16,6 +16,7 @@
 		0F97C2D424B3C0180047FB07 /* InstaCloneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2D324B3C0180047FB07 /* InstaCloneTests.m */; };
 		0F97C2DF24B3C0180047FB07 /* InstaCloneUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2DE24B3C0180047FB07 /* InstaCloneUITests.m */; };
 		0F97C2EF24B3CEDB0047FB07 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2EE24B3CEDB0047FB07 /* CreateAccountViewController.m */; };
+		0F97C2F224B3D55A0047FB07 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2F124B3D55A0047FB07 /* LoginViewController.m */; };
 		55D8FAF072E80CDC0B676732 /* Pods_InstaClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C8B8F601EF0CB47F903182 /* Pods_InstaClone.framework */; };
 		79585808C946FD39B2B89F5F /* Pods_InstaCloneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1400328F429E5897B59645A /* Pods_InstaCloneTests.framework */; };
 		DD9F067B535C0851FB700C3C /* Pods_InstaClone_InstaCloneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA799B4028C4660A9ED7DB9 /* Pods_InstaClone_InstaCloneUITests.framework */; };
@@ -59,6 +60,8 @@
 		0F97C2E024B3C0180047FB07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F97C2ED24B3CEDB0047FB07 /* CreateAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
 		0F97C2EE24B3CEDB0047FB07 /* CreateAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
+		0F97C2F024B3D55A0047FB07 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		0F97C2F124B3D55A0047FB07 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		46F0214E753EF56E0BEA4CF0 /* Pods-InstaClone-InstaCloneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone-InstaCloneUITests.release.xcconfig"; path = "Target Support Files/Pods-InstaClone-InstaCloneUITests/Pods-InstaClone-InstaCloneUITests.release.xcconfig"; sourceTree = "<group>"; };
 		690F11F8340BA858CEB9C08A /* Pods-InstaClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.debug.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.debug.xcconfig"; sourceTree = "<group>"; };
 		74C8B8F601EF0CB47F903182 /* Pods_InstaClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +161,8 @@
 			children = (
 				0F97C2ED24B3CEDB0047FB07 /* CreateAccountViewController.h */,
 				0F97C2EE24B3CEDB0047FB07 /* CreateAccountViewController.m */,
+				0F97C2F024B3D55A0047FB07 /* LoginViewController.h */,
+				0F97C2F124B3D55A0047FB07 /* LoginViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -427,6 +432,7 @@
 				0F97C2B924B3C0170047FB07 /* AppDelegate.m in Sources */,
 				0F97C2CA24B3C0180047FB07 /* main.m in Sources */,
 				0F97C2BC24B3C0170047FB07 /* SceneDelegate.m in Sources */,
+				0F97C2F224B3D55A0047FB07 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

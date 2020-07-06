@@ -1,24 +1,25 @@
 //
-//  CreateAccountViewController.m
+//  LoginViewController.m
 //  InstaClone
 //
 //  Created by Alex Oseguera on 7/6/20.
 //  Copyright © 2020 Alex Oseguera. All rights reserved.
 //
 
-#import "CreateAccountViewController.h"
+#import "LoginViewController.h"
 #import <Parse/Parse.h>
 
-@interface CreateAccountViewController ()
+@interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end
 
-@implementation CreateAccountViewController
+@implementation LoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
 }
 
 - (void) displayAlertWithMessage:(NSString *)alertMessage andTitle:(NSString *)titleMessage{
@@ -32,25 +33,23 @@
     }];
 }
 
--(void)performSignUp{
-    PFUser *newUser = [PFUser user];
-    newUser.username = self.usernameTextField.text;
-    newUser.password = self.passwordTextField.text;
+-(void) performLogin{
+    NSString *username = self.usernameTextField.text;
+    NSString *password = self.passwordTextField.text;
     
     typeof(self) __weak weakSelf = self;
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if(error != nil ){
-            NSLog(@"Error: %@", error.localizedDescription);
-            [weakSelf displayAlertWithMessage:error.localizedDescription andTitle:@"Sign up error"];
+    [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+        if(error != nil){
+            [weakSelf displayAlertWithMessage:error.localizedDescription andTitle:@"Login Error"];
         } else {
-            NSLog(@"User Registed Successfully");
-            [weakSelf performSegueWithIdentifier:@"signupCompleteSegue" sender:nil];
+            NSLog(@"Login Success");
+            [weakSelf performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
     }];
 }
 
-- (IBAction)signUpUser:(id)sender {
-    [self performSignUp];
+- (IBAction)loginUser:(id)sender {
+    [self performLogin];
 }
 
 /*
