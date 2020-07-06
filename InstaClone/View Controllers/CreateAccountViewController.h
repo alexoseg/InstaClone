@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CreateAccountViewController.h
 //  InstaClone
 //
 //  Created by Alex Oseguera on 7/6/20.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface CreateAccountViewController : UIViewController
 
 @end
 
+NS_ASSUME_NONNULL_END

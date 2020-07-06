@@ -3,19 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0F97C2B924B3C0170047FB07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2B824B3C0170047FB07 /* AppDelegate.m */; };
 		0F97C2BC24B3C0170047FB07 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2BB24B3C0170047FB07 /* SceneDelegate.m */; };
-		0F97C2BF24B3C0170047FB07 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2BE24B3C0170047FB07 /* ViewController.m */; };
 		0F97C2C224B3C0170047FB07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F97C2C024B3C0170047FB07 /* Main.storyboard */; };
 		0F97C2C424B3C0180047FB07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F97C2C324B3C0180047FB07 /* Assets.xcassets */; };
 		0F97C2C724B3C0180047FB07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F97C2C524B3C0180047FB07 /* LaunchScreen.storyboard */; };
 		0F97C2CA24B3C0180047FB07 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2C924B3C0180047FB07 /* main.m */; };
 		0F97C2D424B3C0180047FB07 /* InstaCloneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2D324B3C0180047FB07 /* InstaCloneTests.m */; };
 		0F97C2DF24B3C0180047FB07 /* InstaCloneUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2DE24B3C0180047FB07 /* InstaCloneUITests.m */; };
+		0F97C2EF24B3CEDB0047FB07 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2EE24B3CEDB0047FB07 /* CreateAccountViewController.m */; };
 		55D8FAF072E80CDC0B676732 /* Pods_InstaClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C8B8F601EF0CB47F903182 /* Pods_InstaClone.framework */; };
 		79585808C946FD39B2B89F5F /* Pods_InstaCloneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1400328F429E5897B59645A /* Pods_InstaCloneTests.framework */; };
 		DD9F067B535C0851FB700C3C /* Pods_InstaClone_InstaCloneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA799B4028C4660A9ED7DB9 /* Pods_InstaClone_InstaCloneUITests.framework */; };
@@ -46,8 +46,6 @@
 		0F97C2B824B3C0170047FB07 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0F97C2BA24B3C0170047FB07 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		0F97C2BB24B3C0170047FB07 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		0F97C2BD24B3C0170047FB07 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0F97C2BE24B3C0170047FB07 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0F97C2C124B3C0170047FB07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F97C2C324B3C0180047FB07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F97C2C624B3C0180047FB07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,6 +57,8 @@
 		0F97C2DA24B3C0180047FB07 /* InstaCloneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstaCloneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F97C2DE24B3C0180047FB07 /* InstaCloneUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstaCloneUITests.m; sourceTree = "<group>"; };
 		0F97C2E024B3C0180047FB07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F97C2ED24B3CEDB0047FB07 /* CreateAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
+		0F97C2EE24B3CEDB0047FB07 /* CreateAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		46F0214E753EF56E0BEA4CF0 /* Pods-InstaClone-InstaCloneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone-InstaCloneUITests.release.xcconfig"; path = "Target Support Files/Pods-InstaClone-InstaCloneUITests/Pods-InstaClone-InstaCloneUITests.release.xcconfig"; sourceTree = "<group>"; };
 		690F11F8340BA858CEB9C08A /* Pods-InstaClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.debug.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.debug.xcconfig"; sourceTree = "<group>"; };
 		74C8B8F601EF0CB47F903182 /* Pods_InstaClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,12 +121,11 @@
 		0F97C2B624B3C0170047FB07 /* InstaClone */ = {
 			isa = PBXGroup;
 			children = (
+				0F97C2EC24B3CE9B0047FB07 /* View Controllers */,
 				0F97C2B724B3C0170047FB07 /* AppDelegate.h */,
 				0F97C2B824B3C0170047FB07 /* AppDelegate.m */,
 				0F97C2BA24B3C0170047FB07 /* SceneDelegate.h */,
 				0F97C2BB24B3C0170047FB07 /* SceneDelegate.m */,
-				0F97C2BD24B3C0170047FB07 /* ViewController.h */,
-				0F97C2BE24B3C0170047FB07 /* ViewController.m */,
 				0F97C2C024B3C0170047FB07 /* Main.storyboard */,
 				0F97C2C324B3C0180047FB07 /* Assets.xcassets */,
 				0F97C2C524B3C0180047FB07 /* LaunchScreen.storyboard */,
@@ -154,6 +153,15 @@
 			path = InstaCloneUITests;
 			sourceTree = "<group>";
 		};
+		0F97C2EC24B3CE9B0047FB07 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0F97C2ED24B3CEDB0047FB07 /* CreateAccountViewController.h */,
+				0F97C2EE24B3CEDB0047FB07 /* CreateAccountViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		CC4700430A666F41650DF873 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +172,6 @@
 				8A1AEB7073E22FC3856B7628 /* Pods-InstaCloneTests.debug.xcconfig */,
 				02B7BDC3E133DD3F22E6C27D /* Pods-InstaCloneTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -416,7 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F97C2BF24B3C0170047FB07 /* ViewController.m in Sources */,
+				0F97C2EF24B3CEDB0047FB07 /* CreateAccountViewController.m in Sources */,
 				0F97C2B924B3C0170047FB07 /* AppDelegate.m in Sources */,
 				0F97C2CA24B3C0180047FB07 /* main.m in Sources */,
 				0F97C2BC24B3C0170047FB07 /* SceneDelegate.m in Sources */,
