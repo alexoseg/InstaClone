@@ -221,11 +221,79 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="insta_camera_btn" style="plain" id="xtD-jk-cyZ">
+                            <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="ffw-7g-GcN" kind="presentation" modalPresentationStyle="fullScreen" id="O3Q-bd-ghj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61z-Bo-ccT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="583" y="2367"/>
+        </scene>
+        <!--Compose View Controller-->
+        <scene sceneID="Uyv-J0-EDh">
+            <objects>
+                <viewController id="G60-Xb-adi" customClass="ComposeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w4E-ps-CLh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="83X-kf-Sti">
+                                <rect key="frame" x="15" y="103" width="80" height="80"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Byv-j5-eUe"/>
+                                    <constraint firstAttribute="height" constant="80" id="gNg-v2-m6L"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="8r5-BZ-CsD" appends="YES" id="6bj-yK-cl7"/>
+                                </connections>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write a Caption..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Po-Y8-3dZ">
+                                <rect key="frame" x="103" y="103" width="296" height="80"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xc-Hx-vC9">
+                                <rect key="frame" x="0.0" y="203" width="414" height="1"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="XFs-H4-FMB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Po-Y8-3dZ" firstAttribute="leading" secondItem="83X-kf-Sti" secondAttribute="trailing" constant="8" id="0oo-zC-At9"/>
+                            <constraint firstItem="EbW-5d-DO1" firstAttribute="trailing" secondItem="5xc-Hx-vC9" secondAttribute="trailing" id="1xr-AJ-d52"/>
+                            <constraint firstItem="5xc-Hx-vC9" firstAttribute="top" secondItem="83X-kf-Sti" secondAttribute="bottom" constant="20" id="2ay-e9-C4M"/>
+                            <constraint firstItem="83X-kf-Sti" firstAttribute="top" secondItem="EbW-5d-DO1" secondAttribute="top" constant="15" id="AtR-RO-HJQ"/>
+                            <constraint firstItem="6Po-Y8-3dZ" firstAttribute="top" secondItem="EbW-5d-DO1" secondAttribute="top" constant="15" id="L36-bI-hrE"/>
+                            <constraint firstItem="5xc-Hx-vC9" firstAttribute="leading" secondItem="EbW-5d-DO1" secondAttribute="leading" id="MHc-wi-BJL"/>
+                            <constraint firstItem="6Po-Y8-3dZ" firstAttribute="bottom" secondItem="83X-kf-Sti" secondAttribute="bottom" id="Wvi-Z8-EVz"/>
+                            <constraint firstItem="EbW-5d-DO1" firstAttribute="trailing" secondItem="6Po-Y8-3dZ" secondAttribute="trailing" constant="15" id="ftk-mG-Nuc"/>
+                            <constraint firstItem="83X-kf-Sti" firstAttribute="leading" secondItem="EbW-5d-DO1" secondAttribute="leading" constant="15" id="qVn-UT-TJ2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EbW-5d-DO1"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hzz-PF-ePc">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="sff-7e-KBX">
+                            <connections>
+                                <action selector="cancelComposition:" destination="G60-Xb-adi" id="k8h-DR-IRC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="FPj-t7-4rn"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hpr-Qd-Ys3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8r5-BZ-CsD"/>
+            </objects>
+            <point key="canvasLocation" x="2557.971014492754" y="2366.5178571428569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rAt-EU-MOb">
@@ -264,8 +332,29 @@
             </objects>
             <point key="canvasLocation" x="583" y="1592"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Efz-IE-dF2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ffw-7g-GcN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PZa-Dh-vOg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="G60-Xb-adi" kind="relationship" relationship="rootViewController" id="3il-pK-J4Z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1eg-eq-vWB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1557" y="2367"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="VMm-q8-pmR"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="insta_camera_btn" width="25" height="25"/>
+    </resources>
 </document>
