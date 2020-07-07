@@ -12,13 +12,24 @@
 @implementation Post
 
 //Tells the compiler that the getters and setters are implemented not by the class itself
-@dynamic postID;
-@dynamic userID;
+@dynamic postID; 
 @dynamic author;
 @dynamic caption;
 @dynamic image;
 @dynamic likeCount;
 @dynamic commentCount;
+
+- (instancetype)initWithObjectId:(NSString *)objectId caption:(NSString *)caption author:(PFUser *)author commentCount:(NSNumber *)commentCount likeCount:(NSNumber *)likeCount image:(PFFileObject *)image{
+    Post *post = [Post new];
+    post.objectId = objectId;
+    post.caption = caption;
+    post.author = author;
+    post.commentCount = commentCount;
+    post.likeCount = likeCount;
+    post.image = image;
+    
+    return post;
+}
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
