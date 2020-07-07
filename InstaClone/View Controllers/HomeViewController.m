@@ -11,6 +11,7 @@
 #import "SceneDelegate.h"
 #import "InstaCell.h"
 #import "Post.h"
+#import "InstaDetailsViewContoller.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -58,7 +59,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     InstaCell *const cell = [tableView dequeueReusableCellWithIdentifier:@"InstaCell"];
     PFObject *const object = self.posts[indexPath.row];
-    Post *post = [[Post alloc] initWithObjectId:object.objectId caption:object[@"caption"] author:object[@"author"] commentCount:object[@"commentCount"] likeCount:object[@"likeCount"] image:object[@"image"]];
+    Post *post = [[Post alloc] initWithObjectId:object.objectId caption:object[@"caption"] author:object[@"author"] commentCount:object[@"commentCount"] likeCount:object[@"likeCount"] image:object[@"image"] createdAtDate:object.createdAt];
     
     cell.descriptionLabel.text = post.caption;
     cell.postImageView.image = nil;
@@ -74,6 +75,11 @@
     return self.posts.count;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
+    [tableView reloadRowsAtIndexPaths:[[NSArray alloc] initWithObjects: indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 - (IBAction)onLogout:(id)sender {
     NSLog(@"Logout pressed");
       [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -86,14 +92,20 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if([[segue identifier] isEqualToString:@"detailsSegue"]){
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        PFObject *const object = self.posts[indexPath.row];
+        Post *post = [[Post alloc] initWithObjectId:object.objectId caption:object[@"caption"] author:object[@"author"] commentCount:object[@"commentCount"] likeCount:object[@"likeCount"] image:object[@"image"] createdAtDate:object.createdAt];
+        InstaDetailsViewContoller *const destinationViewController = [segue destinationViewController];
+        destinationViewController.post = post;
+    }
 }
-*/
+
 
 @end

@@ -22,9 +22,10 @@
 @property (nonatomic, strong) PFFileObject * _Nonnull image;
 @property (nonatomic, strong) NSNumber * _Nonnull likeCount;
 @property (nonatomic, strong) NSNumber * _Nonnull commentCount;
+@property (nonatomic, strong) NSDate * _Nonnull createdAtDate; 
 
 + (void) postUserImage:(UIImage * _Nullable)image withCaption:(NSString * _Nullable)caption  withCompletion:(PFBooleanResultBlock  _Nullable)completion;
-- (instancetype _Nonnull )initWithObjectId:(NSString *_Nonnull)objectId caption:(NSString *_Nonnull)caption author:(PFUser *_Nonnull)author commentCount:(NSNumber *_Nonnull)commentCount likeCount:(NSNumber *_Nonnull)likeCount image:(PFFileObject *_Nonnull)image;
+- (instancetype _Nonnull )initWithObjectId:(NSString *_Nonnull)objectId caption:(NSString *_Nonnull)caption author:(PFUser *_Nonnull)author commentCount:(NSNumber *_Nonnull)commentCount likeCount:(NSNumber *_Nonnull)likeCount image:(PFFileObject *_Nonnull)image createdAtDate:(NSDate *_Nonnull)createdAtDate;
 
 @end
 

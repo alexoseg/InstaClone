@@ -18,8 +18,9 @@
 @dynamic image;
 @dynamic likeCount;
 @dynamic commentCount;
+@dynamic createdAtDate; 
 
-- (instancetype)initWithObjectId:(NSString *)objectId caption:(NSString *)caption author:(PFUser *)author commentCount:(NSNumber *)commentCount likeCount:(NSNumber *)likeCount image:(PFFileObject *)image{
+- (instancetype)initWithObjectId:(NSString *)objectId caption:(NSString *)caption author:(PFUser *)author commentCount:(NSNumber *)commentCount likeCount:(NSNumber *)likeCount image:(PFFileObject *)image createdAtDate:(NSDate *)createdAtDate{
     Post *post = [Post new];
     post.objectId = objectId;
     post.caption = caption;
@@ -27,6 +28,7 @@
     post.commentCount = commentCount;
     post.likeCount = likeCount;
     post.image = image;
+    post.createdAtDate = createdAtDate; 
     
     return post;
 }

@@ -238,7 +238,7 @@
                                         <connections>
                                             <outlet property="descriptionLabel" destination="50X-4b-jBj" id="j0s-1a-9s7"/>
                                             <outlet property="postImageView" destination="4I3-uR-Om3" id="adE-sZ-Rbp"/>
-                                            <segue destination="pkL-nC-2xC" kind="show" id="8py-nx-opa"/>
+                                            <segue destination="pkL-nC-2xC" kind="show" identifier="detailsSegue" id="8py-nx-opa"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -279,10 +279,10 @@
             </objects>
             <point key="canvasLocation" x="582.60869565217399" y="2366.5178571428569"/>
         </scene>
-        <!--View Controller-->
+        <!--Insta Details View Contoller-->
         <scene sceneID="uaX-ma-P7Y">
             <objects>
-                <viewController id="pkL-nC-2xC" sceneMemberID="viewController">
+                <viewController id="pkL-nC-2xC" customClass="InstaDetailsViewContoller" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2ZG-3l-HoZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -362,6 +362,13 @@
                         <viewLayoutGuide key="safeArea" id="sGl-Pv-Rv5"/>
                     </view>
                     <navigationItem key="navigationItem" id="xmy-Xz-t1y"/>
+                    <connections>
+                        <outlet property="captionLabel" destination="7GW-vS-DdL" id="gRL-p1-NAn"/>
+                        <outlet property="instaImageView" destination="mDS-cN-H67" id="491-JD-gMj"/>
+                        <outlet property="timestampLabel" destination="rci-rJ-EAD" id="9IP-fZ-3J2"/>
+                        <outlet property="usernameLabelBot" destination="WzZ-Ln-gvD" id="TDc-y3-KT9"/>
+                        <outlet property="usernameLabelTop" destination="0Uq-tI-LKQ" id="MOC-8h-Zo8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gX-97-4JD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
