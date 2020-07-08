@@ -7,6 +7,7 @@ target 'InstaClone' do
 
   # Pods for InstaClone
 	pod 'Parse'
+	pod 'MBProgressHUD', '~> 1.2.0'
 
   target 'InstaCloneTests' do
     inherit! :search_paths
