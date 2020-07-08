@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabelBot;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *instaImageView;
 
@@ -28,6 +29,7 @@
 }
  
 - (void) setUpViews {
+    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
     self.usernameLabelBot.text = self.post.author.username;
     self.usernameLabelTop.text = self.post.author.username;
     
