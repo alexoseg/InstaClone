@@ -66,7 +66,7 @@
 }
 
 - (IBAction)onShare:(id)sender {
-    UIImage *resizedImage = [self resizeImage:self.composeImageView.image withSize:CGSizeMake(100, 100)];
+    UIImage *resizedImage = [self resizeImage:self.composeImageView.image withSize:CGSizeMake(500, 500)];
     
     typeof(self) __weak weakSelf = self;
     [Post postUserImage:resizedImage withCaption:self.captionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
