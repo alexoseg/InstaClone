@@ -41,6 +41,7 @@
     [query includeKey:@"likeCount"];
     [query includeKey:@"image"];
     [query includeKey:@"author"];
+    [query orderByDescending:@"createdAt"];
     
     query.limit = 20;
     typeof(self) __weak weakSelf = self;
