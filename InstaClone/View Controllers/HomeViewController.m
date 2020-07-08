@@ -12,6 +12,7 @@
 #import "InstaCell.h"
 #import "Post.h"
 #import "InstaDetailsViewContoller.h"
+#import "MBProgressHUD.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -31,6 +32,7 @@
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self fetchPosts];
 }
 
@@ -46,6 +48,7 @@
     query.limit = 20;
     typeof(self) __weak weakSelf = self;
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if(error != nil){
             NSLog(@"%@", error.localizedDescription);
         } else {

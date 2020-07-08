@@ -8,6 +8,7 @@
 
 #import "CreateAccountViewController.h"
 #import <Parse/Parse.h>
+#import "MBProgressHUD.h"
 
 @interface CreateAccountViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -33,12 +34,16 @@
 }
 
 -(void)performSignUp{
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+    
     PFUser *newUser = [PFUser user];
     newUser.username = self.usernameTextField.text;
     newUser.password = self.passwordTextField.text;
     
     typeof(self) __weak weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if(error != nil ){
             NSLog(@"Error: %@", error.localizedDescription);
             [weakSelf displayAlertWithMessage:error.localizedDescription andTitle:@"Sign up error"];

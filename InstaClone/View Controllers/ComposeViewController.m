@@ -9,6 +9,7 @@
 #import "ComposeViewController.h"
 #import <Parse/Parse.h>
 #import "Post.h"
+#import "MBProgressHUD.h"
 
 @interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -66,10 +67,13 @@
 }
 
 - (IBAction)onShare:(id)sender {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     UIImage *resizedImage = [self resizeImage:self.composeImageView.image withSize:CGSizeMake(500, 500)];
     
     typeof(self) __weak weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Post postUserImage:resizedImage withCaption:self.captionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if(error != nil){
             NSLog(@"Error Posting User Post");
         } else {

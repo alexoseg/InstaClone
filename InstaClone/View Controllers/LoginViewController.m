@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
+#import "MBProgressHUD.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -34,11 +35,15 @@
 }
 
 -(void) performLogin{
+    
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     NSString *username = self.usernameTextField.text;
     NSString *password = self.passwordTextField.text;
     
     typeof(self) __weak weakSelf = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         if(error != nil){
             [weakSelf displayAlertWithMessage:error.localizedDescription andTitle:@"Login Error"];
         } else {
