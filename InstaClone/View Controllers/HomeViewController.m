@@ -60,14 +60,7 @@
     InstaCell *const cell = [tableView dequeueReusableCellWithIdentifier:@"InstaCell"];
     PFObject *const object = self.posts[indexPath.row];
     Post *post = [[Post alloc] initWithObjectId:object.objectId caption:object[@"caption"] author:object[@"author"] commentCount:object[@"commentCount"] likeCount:object[@"likeCount"] image:object[@"image"] createdAtDate:object.createdAt];
-    
-    cell.descriptionLabel.text = post.caption;
-    cell.postImageView.image = nil;
-    [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-        UIImage *image = [UIImage imageWithData:data];
-        [cell.postImageView setImage:image];
-    }];
-    
+    [cell setUpInstaCellWithPost:post];
     return cell;
 }
 

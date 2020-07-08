@@ -12,13 +12,27 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
+}
+
+- (void)setUpInstaCellWithPost:(Post *)post{
+    self.descriptionLabel.text = post.caption;
+    self.usernameLabelTop.text = post.author.username;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, yyyy"];
+    self.dateLabel.text = [formatter stringFromDate:post.createdAtDate];
+
+    self.postImageView.image = nil;
+    typeof(self) __weak weakSelf = self;
+    [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        UIImage *image = [UIImage imageWithData:data];
+        [weakSelf.postImageView setImage:image];
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end
