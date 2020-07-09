@@ -17,6 +17,7 @@
 
 - (void)setUpInstaCellWithPost:(Post *)post{
     self.descriptionLabel.text = post.caption;
+    NSLog(@"%@", post.caption);
     self.usernameLabelTop.text = post.author.username;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

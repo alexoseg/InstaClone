@@ -14,11 +14,12 @@
 #import "InstaDetailsViewContoller.h"
 #import "MBProgressHUD.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
 @property (strong, nonatomic) UIRefreshControl* refreshControl;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
 
@@ -60,8 +61,11 @@
     }];
 }
 
+#pragma mark - TABLEVIEW CODE
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     InstaCell *const cell = [tableView dequeueReusableCellWithIdentifier:@"InstaCell"];
+    NSLog(@"%d", (int)indexPath.row);
     PFObject *const object = self.posts[indexPath.row];
     Post *post = [[Post alloc] initWithObjectId:object.objectId caption:object[@"caption"] author:object[@"author"] commentCount:object[@"commentCount"] likeCount:object[@"likeCount"] image:object[@"image"] createdAtDate:object.createdAt];
     [cell setUpInstaCellWithPost:post];
@@ -77,6 +81,8 @@
     [tableView reloadRowsAtIndexPaths:[[NSArray alloc] initWithObjects: indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
+#pragma mark - OTHER FEATURES
+
 - (IBAction)onLogout:(id)sender {
     NSLog(@"Logout pressed");
       [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -88,7 +94,44 @@
       }];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
+    if(!self.isMoreDataLoading){
+
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = YES;
+            [self loadMoreData];
+        }
+    }
+}
+
+- (void)loadMoreData {
+    PFQuery *const query = [PFQuery queryWithClassName:@"Post"];
+    PFObject const *lastObject = self.posts[self.posts.count - 1];
+    [query includeKey:@"caption"];
+    [query includeKey:@"commentCount"];
+    [query includeKey:@"likeCount"];
+    [query includeKey:@"image"];
+    [query includeKey:@"author"];
+    [query whereKey:@"createdAt" lessThan:lastObject.createdAt];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
+    
+    typeof(self) __weak weakSelf = self;
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if(error != nil){
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            NSLog(@"Successfully Fetched More Posts!");
+            self.posts = [self.posts arrayByAddingObjectsFromArray:objects];
+            weakSelf.isMoreDataLoading = NO; 
+            [weakSelf.tableView reloadData];
+        }
+    }];
+}
 
 #pragma mark - Navigation
 
