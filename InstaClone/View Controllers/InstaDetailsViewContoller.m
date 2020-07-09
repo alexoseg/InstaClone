@@ -25,23 +25,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpViews];
-    // Do any additional setup after loading the view.
 }
  
 - (void) setUpViews {
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
-    self.usernameLabelBot.text = self.post.author.username;
-    self.usernameLabelTop.text = self.post.author.username;
+    self.usernameLabelBot.text = self.post.username;
+    self.usernameLabelTop.text = self.post.username;
     
     self.captionLabel.text = self.post.caption;
-    [self.post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+    [self.post.postImage getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
         UIImage *image = [UIImage imageWithData:data];
         [self.instaImageView setImage:image];
     }];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMM d, yyyy"];
-    self.timestampLabel.text = [formatter stringFromDate:self.post.createdAtDate];
+    self.timestampLabel.text = self.post.createdAtDateString;
 }
 
 /*

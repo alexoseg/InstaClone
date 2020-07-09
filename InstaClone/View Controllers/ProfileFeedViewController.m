@@ -10,6 +10,7 @@
 #import "InstaCell.h"
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
+#import "PostBuilder.h"
 
 @interface ProfileFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -63,7 +64,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     InstaCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InstaCell"];
     PFObject *const object = self.postsArray[indexPath.row];
-    Post *post = [[Post alloc] initWithObjectId:object.objectId caption:object[@"caption"] author:object[@"author"] commentCount:object[@"commentCount"] likeCount:object[@"likeCount"] image:object[@"image"] createdAtDate:object.createdAt];
+    Post *post = [PostBuilder buildPostFromPFObject:object];
     [cell setUpInstaCellWithPost:post];
     
     return cell;

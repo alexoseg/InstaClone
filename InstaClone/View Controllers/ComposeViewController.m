@@ -9,6 +9,7 @@
 #import "ComposeViewController.h"
 #import <Parse/Parse.h>
 #import "Post.h"
+#import "PostBuilder.h"
 #import "MBProgressHUD.h"
 
 @interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -26,7 +27,6 @@
     self.imagePickerVC = [UIImagePickerController new];
     self.imagePickerVC.delegate = self;
     self.imagePickerVC.allowsEditing = YES;
-    // Do any additional setup after loading the view.
 }
 
 - (IBAction)cancelComposition:(id)sender {
@@ -72,8 +72,7 @@
     
     typeof(self) __weak weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Post postUserImage:resizedImage withCaption:self.captionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+    [PostBuilder buildParsePostFrom:resizedImage caption:self.captionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(error != nil){
             NSLog(@"Error Posting User Post");
         } else {

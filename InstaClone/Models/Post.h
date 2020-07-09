@@ -9,24 +9,31 @@
 #import <Foundation/Foundation.h>
 #import "Parse/Parse.h"
 
-#ifndef Post_h
-#define Post_h
+NS_ASSUME_NONNULL_BEGIN
 
-@interface Post : PFObject<PFSubclassing>
+@interface Post : NSObject
 
-@property (nonatomic, strong) NSString * _Nullable postID;
+@property (nonatomic, strong) NSString *postID;
+@property (nonatomic, strong) PFUser *author;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *caption;
+@property (nonatomic, strong) PFFileObject *postImage;
+@property (nonatomic, strong) NSNumber *likeCount;
+@property (nonatomic, strong) NSNumber *commentCount;
+@property (nonatomic, strong) NSString *createdAtDateString;
 
-@property (nonatomic, strong) PFUser * _Nonnull author;
+- (instancetype)initWithPostId:(NSString *)postId
+                        username:(NSString *)username
+                         caption:(NSString *)caption
+                       postImage:(PFFileObject *)postImage
+                       likeCount:(NSNumber *)likeCount
+                    commentCount:(NSNumber *)commentCount
+                   createdAtDateString:(NSString *)createdAtDateString;
 
-@property (nonatomic, strong) NSString * _Nonnull caption;
-@property (nonatomic, strong) PFFileObject * _Nonnull image;
-@property (nonatomic, strong) NSNumber * _Nonnull likeCount;
-@property (nonatomic, strong) NSNumber * _Nonnull commentCount;
-@property (nonatomic, strong) NSDate * _Nonnull createdAtDate; 
++ (instancetype)new NS_UNAVAILABLE;
 
-+ (void) postUserImage:(UIImage * _Nullable)image withCaption:(NSString * _Nullable)caption  withCompletion:(PFBooleanResultBlock  _Nullable)completion;
-- (instancetype _Nonnull )initWithObjectId:(NSString *_Nonnull)objectId caption:(NSString *_Nonnull)caption author:(PFUser *_Nonnull)author commentCount:(NSNumber *_Nonnull)commentCount likeCount:(NSNumber *_Nonnull)likeCount image:(PFFileObject *_Nonnull)image createdAtDate:(NSDate *_Nonnull)createdAtDate;
+- (instancetype)init NS_UNAVAILABLE;
 
 @end
 
-#endif /* Post_h */
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F2E76E324B66D1E008E8A22 /* ProfileFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E76E224B66D1E008E8A22 /* ProfileFeedViewController.m */; };
+		0F2E76ED24B7B745008E8A22 /* PostBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E76EC24B7B745008E8A22 /* PostBuilder.m */; };
 		0F97C2B924B3C0170047FB07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2B824B3C0170047FB07 /* AppDelegate.m */; };
 		0F97C2BC24B3C0170047FB07 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2BB24B3C0170047FB07 /* SceneDelegate.m */; };
 		0F97C2C224B3C0170047FB07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F97C2C024B3C0170047FB07 /* Main.storyboard */; };
@@ -50,6 +51,8 @@
 		052AAF5E691ED825BA4FC0AE /* Pods-InstaClone-InstaCloneUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone-InstaCloneUITests.debug.xcconfig"; path = "Target Support Files/Pods-InstaClone-InstaCloneUITests/Pods-InstaClone-InstaCloneUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0F2E76E124B66D1E008E8A22 /* ProfileFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileFeedViewController.h; sourceTree = "<group>"; };
 		0F2E76E224B66D1E008E8A22 /* ProfileFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileFeedViewController.m; sourceTree = "<group>"; };
+		0F2E76EB24B7B745008E8A22 /* PostBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostBuilder.h; sourceTree = "<group>"; };
+		0F2E76EC24B7B745008E8A22 /* PostBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostBuilder.m; sourceTree = "<group>"; };
 		0F97C2B424B3C0170047FB07 /* InstaClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F97C2B724B3C0170047FB07 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0F97C2B824B3C0170047FB07 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -117,6 +120,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F2E76E924B7B6BF008E8A22 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				0F2E76EA24B7B729008E8A22 /* Post Builder */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		0F2E76EA24B7B729008E8A22 /* Post Builder */ = {
+			isa = PBXGroup;
+			children = (
+				0F2E76EB24B7B745008E8A22 /* PostBuilder.h */,
+				0F2E76EC24B7B745008E8A22 /* PostBuilder.m */,
+			);
+			path = "Post Builder";
+			sourceTree = "<group>";
+		};
 		0F97C2AB24B3C0170047FB07 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +218,7 @@
 		0F97C2F924B4E9650047FB07 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0F2E76E924B7B6BF008E8A22 /* Builders */,
 				0F97C2FB24B4EA230047FB07 /* Post.h */,
 				0F97C2FC24B4EB170047FB07 /* Post.m */,
 			);
@@ -479,6 +500,7 @@
 				0F97C2B924B3C0170047FB07 /* AppDelegate.m in Sources */,
 				0F97C30124B514390047FB07 /* InstaCell.m in Sources */,
 				0F97C2CA24B3C0180047FB07 /* main.m in Sources */,
+				0F2E76ED24B7B745008E8A22 /* PostBuilder.m in Sources */,
 				0F97C2BC24B3C0170047FB07 /* SceneDelegate.m in Sources */,
 				0F97C2F824B3E44D0047FB07 /* ComposeViewController.m in Sources */,
 				0F97C30424B52D060047FB07 /* InstaDetailsViewContoller.m in Sources */,

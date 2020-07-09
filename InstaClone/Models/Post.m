@@ -11,57 +11,27 @@
 
 @implementation Post
 
-//Tells the compiler that the getters and setters are implemented not by the class itself
-@dynamic postID; 
-@dynamic author;
-@dynamic caption;
-@dynamic image;
-@dynamic likeCount;
-@dynamic commentCount;
-@dynamic createdAtDate; 
-
-- (instancetype)initWithObjectId:(NSString *)objectId caption:(NSString *)caption author:(PFUser *)author commentCount:(NSNumber *)commentCount likeCount:(NSNumber *)likeCount image:(PFFileObject *)image createdAtDate:(NSDate *)createdAtDate{
-    Post *post = [Post new];
-    post.objectId = objectId;
-    post.caption = caption;
-    post.author = author;
-    post.commentCount = commentCount;
-    post.likeCount = likeCount;
-    post.image = image;
-    post.createdAtDate = createdAtDate; 
+- (instancetype)initWithPostId:(NSString *)postId
+                      username:(NSString *)username
+                       caption:(NSString *)caption
+                     postImage:(PFFileObject *)postImage
+                     likeCount:(NSNumber *)likeCount
+                  commentCount:(NSNumber *)commentCount
+           createdAtDateString:(NSString *)createdAtDateString {
     
-    return post;
-}
-
-+ (nonnull NSString *)parseClassName {
-    return @"Post";
-}
-
-+ (void) postUserImage:(UIImage * _Nullable)image withCaption:(NSString * _Nullable)caption  withCompletion:(PFBooleanResultBlock  _Nullable)completion{
-    Post *newPost = [Post new];
-    newPost.image = [self getPFFileFromImage:image];
-    newPost.author = [PFUser currentUser];
-    newPost.caption = caption;
-    newPost.likeCount = @(0);
-    newPost.commentCount = @(0);
-       
-    [newPost saveInBackgroundWithBlock: completion];
-}
-
-+ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
- 
-    // check if image is not nil
-    if (!image) {
-        return nil;
+    self = [super init];
+    
+    if (self) {
+        _postID = postId;
+        _username = username;
+        _caption = caption;
+        _postImage = postImage;
+        _likeCount = likeCount;
+        _commentCount = commentCount;
+        _createdAtDateString = createdAtDateString;
     }
     
-    NSData *imageData = UIImagePNGRepresentation(image);
-    // get image data and check if that is not nil
-    if (!imageData) {
-        return nil;
-    }
-    
-    return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+    return self; 
 }
 
 @end

@@ -13,6 +13,7 @@
 #import "Post.h"
 #import "InstaDetailsViewContoller.h"
 #import "MBProgressHUD.h"
+#import "PostBuilder.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
@@ -65,9 +66,8 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     InstaCell *const cell = [tableView dequeueReusableCellWithIdentifier:@"InstaCell"];
-    NSLog(@"%d", (int)indexPath.row);
     PFObject *const object = self.posts[indexPath.row];
-    Post *post = [[Post alloc] initWithObjectId:object.objectId caption:object[@"caption"] author:object[@"author"] commentCount:object[@"commentCount"] likeCount:object[@"likeCount"] image:object[@"image"] createdAtDate:object.createdAt];
+    Post *post = [PostBuilder buildPostFromPFObject:object];
     [cell setUpInstaCellWithPost:post];
     return cell;
 }
@@ -141,7 +141,7 @@
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
         PFObject *const object = self.posts[indexPath.row];
-        Post *post = [[Post alloc] initWithObjectId:object.objectId caption:object[@"caption"] author:object[@"author"] commentCount:object[@"commentCount"] likeCount:object[@"likeCount"] image:object[@"image"] createdAtDate:object.createdAt];
+        Post *post = [PostBuilder buildPostFromPFObject:object]; 
         InstaDetailsViewContoller *const destinationViewController = [segue destinationViewController];
         destinationViewController.post = post;
     }
