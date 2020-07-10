@@ -38,7 +38,7 @@ static NSString *const kLikeCount = @"likeCount";
         return nil;
     }
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *const formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, yyyy"];
     NSString *const formattedDateString = [formatter stringFromDate:createdAt];
     
