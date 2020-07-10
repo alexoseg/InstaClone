@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0F2E76E324B66D1E008E8A22 /* ProfileFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E76E224B66D1E008E8A22 /* ProfileFeedViewController.m */; };
 		0F2E76ED24B7B745008E8A22 /* PostBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E76EC24B7B745008E8A22 /* PostBuilder.m */; };
+		0F2E76FA24B7CE4E008E8A22 /* ParsePoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E76F924B7CE4E008E8A22 /* ParsePoster.m */; };
+		0F2E76FE24B7D079008E8A22 /* ParseGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E76FD24B7D079008E8A22 /* ParseGetter.m */; };
 		0F97C2B924B3C0170047FB07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2B824B3C0170047FB07 /* AppDelegate.m */; };
 		0F97C2BC24B3C0170047FB07 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F97C2BB24B3C0170047FB07 /* SceneDelegate.m */; };
 		0F97C2C224B3C0170047FB07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F97C2C024B3C0170047FB07 /* Main.storyboard */; };
@@ -53,6 +55,10 @@
 		0F2E76E224B66D1E008E8A22 /* ProfileFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileFeedViewController.m; sourceTree = "<group>"; };
 		0F2E76EB24B7B745008E8A22 /* PostBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostBuilder.h; sourceTree = "<group>"; };
 		0F2E76EC24B7B745008E8A22 /* PostBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostBuilder.m; sourceTree = "<group>"; };
+		0F2E76F824B7CE4E008E8A22 /* ParsePoster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParsePoster.h; sourceTree = "<group>"; };
+		0F2E76F924B7CE4E008E8A22 /* ParsePoster.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParsePoster.m; sourceTree = "<group>"; };
+		0F2E76FC24B7D079008E8A22 /* ParseGetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParseGetter.h; sourceTree = "<group>"; };
+		0F2E76FD24B7D079008E8A22 /* ParseGetter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseGetter.m; sourceTree = "<group>"; };
 		0F97C2B424B3C0170047FB07 /* InstaClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F97C2B724B3C0170047FB07 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0F97C2B824B3C0170047FB07 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -137,6 +143,33 @@
 			path = "Post Builder";
 			sourceTree = "<group>";
 		};
+		0F2E76EE24B7CC54008E8A22 /* ParseManager */ = {
+			isa = PBXGroup;
+			children = (
+				0F2E76FB24B7D054008E8A22 /* Parse GETters */,
+				0F2E76F724B7CE2A008E8A22 /* Parse POSTers */,
+			);
+			path = ParseManager;
+			sourceTree = "<group>";
+		};
+		0F2E76F724B7CE2A008E8A22 /* Parse POSTers */ = {
+			isa = PBXGroup;
+			children = (
+				0F2E76F824B7CE4E008E8A22 /* ParsePoster.h */,
+				0F2E76F924B7CE4E008E8A22 /* ParsePoster.m */,
+			);
+			path = "Parse POSTers";
+			sourceTree = "<group>";
+		};
+		0F2E76FB24B7D054008E8A22 /* Parse GETters */ = {
+			isa = PBXGroup;
+			children = (
+				0F2E76FC24B7D079008E8A22 /* ParseGetter.h */,
+				0F2E76FD24B7D079008E8A22 /* ParseGetter.m */,
+			);
+			path = "Parse GETters";
+			sourceTree = "<group>";
+		};
 		0F97C2AB24B3C0170047FB07 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +195,7 @@
 		0F97C2B624B3C0170047FB07 /* InstaClone */ = {
 			isa = PBXGroup;
 			children = (
+				0F2E76EE24B7CC54008E8A22 /* ParseManager */,
 				0F97C2FE24B514120047FB07 /* Views */,
 				0F97C2F924B4E9650047FB07 /* Models */,
 				0F97C2EC24B3CE9B0047FB07 /* View Controllers */,
@@ -496,6 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F97C2EF24B3CEDB0047FB07 /* CreateAccountViewController.m in Sources */,
+				0F2E76FA24B7CE4E008E8A22 /* ParsePoster.m in Sources */,
 				0F2E76E324B66D1E008E8A22 /* ProfileFeedViewController.m in Sources */,
 				0F97C2B924B3C0170047FB07 /* AppDelegate.m in Sources */,
 				0F97C30124B514390047FB07 /* InstaCell.m in Sources */,
@@ -504,6 +539,7 @@
 				0F97C2BC24B3C0170047FB07 /* SceneDelegate.m in Sources */,
 				0F97C2F824B3E44D0047FB07 /* ComposeViewController.m in Sources */,
 				0F97C30424B52D060047FB07 /* InstaDetailsViewContoller.m in Sources */,
+				0F2E76FE24B7D079008E8A22 /* ParseGetter.m in Sources */,
 				0F97C2F224B3D55A0047FB07 /* LoginViewController.m in Sources */,
 				0F97C2F524B3D7550047FB07 /* HomeViewController.m in Sources */,
 				0F97C2FD24B4EB170047FB07 /* Post.m in Sources */,

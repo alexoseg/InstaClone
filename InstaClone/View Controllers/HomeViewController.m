@@ -14,6 +14,7 @@
 #import "InstaDetailsViewContoller.h"
 #import "MBProgressHUD.h"
 #import "PostBuilder.h"
+#import "ParseGetter.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
@@ -39,26 +40,22 @@
 }
 
 -(void) fetchPosts {
-    PFQuery *const query = [PFQuery queryWithClassName:@"Post"];
-    [query includeKey:@"caption"];
-    [query includeKey:@"commentCount"];
-    [query includeKey:@"likeCount"];
-    [query includeKey:@"image"];
-    [query includeKey:@"author"];
-    [query orderByDescending:@"createdAt"];
-    
-    query.limit = 20;
     typeof(self) __weak weakSelf = self;
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+    [ParseGetter fetchAllPostsWithCompletion:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf == nil) {
+            return;
+        }
+        
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        if(error != nil){
+        if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {
             NSLog(@"Successfully Fetched Posts!");
-            weakSelf.posts = objects;
-            [weakSelf.tableView reloadData];
+            strongSelf.posts = objects;
+            [strongSelf.tableView reloadData];
         }
-        [weakSelf.refreshControl endRefreshing];
+        [strongSelf.refreshControl endRefreshing];
     }];
 }
 
@@ -109,26 +106,25 @@
 }
 
 - (void)loadMoreData {
-    PFQuery *const query = [PFQuery queryWithClassName:@"Post"];
-    PFObject const *lastObject = self.posts[self.posts.count - 1];
-    [query includeKey:@"caption"];
-    [query includeKey:@"commentCount"];
-    [query includeKey:@"likeCount"];
-    [query includeKey:@"image"];
-    [query includeKey:@"author"];
-    [query whereKey:@"createdAt" lessThan:lastObject.createdAt];
-    [query orderByDescending:@"createdAt"];
-    query.limit = 20;
     
+    PFObject const *lastObject = self.posts[self.posts.count - 1];
     typeof(self) __weak weakSelf = self;
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if(error != nil){
+    
+    [ParseGetter fetchPostsBefore:lastObject.createdAt
+                   withCompletion:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf == nil) {
+            return;
+        }
+        
+        if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {
             NSLog(@"Successfully Fetched More Posts!");
-            self.posts = [self.posts arrayByAddingObjectsFromArray:objects];
-            weakSelf.isMoreDataLoading = NO; 
-            [weakSelf.tableView reloadData];
+            strongSelf.posts = [strongSelf.posts arrayByAddingObjectsFromArray:objects];
+            strongSelf.isMoreDataLoading = NO;
+            [strongSelf.tableView reloadData];
         }
     }];
 }

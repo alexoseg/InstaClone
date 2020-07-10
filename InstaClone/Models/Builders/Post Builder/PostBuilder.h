@@ -16,10 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable Post *)buildPostFromPFObject:(PFObject *)object;
 
-+ (void)buildParsePostFrom:(UIImage *)postImage
-                   caption:(NSString *)caption
-            withCompletion:(PFBooleanResultBlock  _Nullable)completion;
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,9 +7,8 @@
 //
 
 #import "ComposeViewController.h"
-#import <Parse/Parse.h>
 #import "Post.h"
-#import "PostBuilder.h"
+#import "ParsePoster.h"
 #import "MBProgressHUD.h"
 
 @interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -72,14 +71,15 @@
     
     typeof(self) __weak weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [PostBuilder buildParsePostFrom:resizedImage caption:self.captionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [ParsePoster parsePostFrom:resizedImage caption:self.captionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(error != nil){
             NSLog(@"Error Posting User Post");
         } else {
             NSLog(@"Sucessfully created post");
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         }
-    }];
+    }]; 
+    
 }
 
 /*

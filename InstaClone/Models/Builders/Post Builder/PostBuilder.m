@@ -51,17 +51,4 @@ static NSString *const kLikeCount = @"likeCount";
                     createdAtDateString:formattedDateString];
 }
 
-+ (void)buildParsePostFrom:(UIImage *)postImage caption:(NSString *)caption withCompletion:(PFBooleanResultBlock)completion {
-    
-    PFObject *post = [PFObject objectWithClassName:@"Post"];
-    NSData *imageData = UIImagePNGRepresentation(postImage);
-    post[kImage] = [PFFileObject fileObjectWithName:@"image.png" data:imageData];
-    post[kCaption] = caption;
-    post[kAuthor] = PFUser.currentUser;
-    post[kLikeCount] = @(0);
-    post[kCommentCount] = @(0);
-    
-    [post saveInBackgroundWithBlock:completion]; 
-}
-
 @end

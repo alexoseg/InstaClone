@@ -7,7 +7,7 @@
 //
 
 #import "CreateAccountViewController.h"
-#import <Parse/Parse.h>
+#import "ParsePoster.h"
 #import "MBProgressHUD.h"
 
 @interface CreateAccountViewController ()
@@ -36,20 +36,24 @@
 -(void)performSignUp{
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     
-    PFUser *newUser = [PFUser user];
-    newUser.username = self.usernameTextField.text;
-    newUser.password = self.passwordTextField.text;
-    
     typeof(self) __weak weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+    [ParsePoster createAccountWithUsername:self.usernameTextField.text
+                                  password:self.passwordTextField.text
+                            withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        
+        typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf == nil) {
+            return;
+        }
+        
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        if(error != nil ){
+        if (error != nil ) {
             NSLog(@"Error: %@", error.localizedDescription);
-            [weakSelf displayAlertWithMessage:error.localizedDescription andTitle:@"Sign up error"];
+            [strongSelf displayAlertWithMessage:error.localizedDescription andTitle:@"Sign up error"];
         } else {
             NSLog(@"User Registed Successfully");
-            [weakSelf performSegueWithIdentifier:@"signupCompleteSegue" sender:nil];
+            [strongSelf performSegueWithIdentifier:@"signupCompleteSegue" sender:nil];
         }
     }];
 }

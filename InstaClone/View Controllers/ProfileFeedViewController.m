@@ -9,6 +9,7 @@
 #import "ProfileFeedViewController.h"
 #import "InstaCell.h"
 #import <Parse/Parse.h>
+#import "ParseGetter.h"
 #import "MBProgressHUD.h"
 #import "PostBuilder.h"
 
@@ -36,28 +37,26 @@
 }
 
 - (void)fetchProfilePosts {
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    NSLog(@"%@", PFUser.currentUser.username);
-    [query whereKey:@"author" equalTo:[PFUser currentUser]];
-    [query includeKey:@"caption"];
-    [query includeKey:@"commentCount"];
-    [query includeKey:@"likeCount"];
-    [query includeKey:@"image"];
-    [query includeKey:@"author"];
-    [query orderByDescending:@"createdAt"];
     
-    query.limit = 20;
     typeof(self) __weak weakSelf = self;
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+    [ParseGetter fetchPostsFromCurrentUserWithCompletion:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        if(error != nil){
+        typeof(weakSelf) strongSelf = weakSelf;
+        
+        if (strongSelf == nil) {
+            return;
+        }
+        
+        if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {
             NSLog(@"Successfully Fetched Posts!");
-            weakSelf.postsArray = objects;
-            [weakSelf.tableView reloadData];
+            strongSelf.postsArray = objects;
+            [strongSelf.tableView reloadData];
         }
-        [weakSelf.refreshControl endRefreshing];
+        
+        [strongSelf.refreshControl endRefreshing];
     }];
 }
 
