@@ -10,15 +10,26 @@
 #import "ParsePoster.h"
 #import "MBProgressHUD.h"
 
+#pragma mark - Interface
+
 @interface CreateAccountViewController ()
+
+#pragma mark - Properties
+
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end
 
+#pragma mark - Implementation
+
 @implementation CreateAccountViewController
 
-- (void) displayAlertWithMessage:(NSString *)alertMessage andTitle:(NSString *)titleMessage{
+#pragma mark - Alert Controls
+
+- (void) displayAlertWithMessage:(NSString *)alertMessage
+                        andTitle:(NSString *)titleMessage
+{
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:titleMessage
                                                                    message:alertMessage
@@ -32,7 +43,10 @@
                      completion:nil];
 }
 
-- (IBAction)signUpUser:(id)sender {
+#pragma mark - Networking
+
+- (IBAction)signUpUser:(id)sender
+{
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder)
                                                to:nil
                                              from:nil
