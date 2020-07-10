@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "MBProgressHUD.h"
 #import "ParsePoster.h"
+#import "SceneDelegate.h"
 
 #pragma mark - Interface
 
@@ -67,8 +68,10 @@
                                        andTitle:@"Login Error"];
         } else {
             NSLog(@"Login Success");
-            [strongSelf performSegueWithIdentifier:@"loginSegue"
-                                            sender:nil];
+            SceneDelegate *const sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+            UIStoryboard *const storyboard = [UIStoryboard storyboardWithName:@"Main"
+                                                                       bundle:nil];
+            sceneDelegate.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabController"];
         }
     }];
 }

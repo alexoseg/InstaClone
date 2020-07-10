@@ -9,6 +9,7 @@
 #import "CreateAccountViewController.h"
 #import "ParsePoster.h"
 #import "MBProgressHUD.h"
+#import "SceneDelegate.h"
 
 #pragma mark - Interface
 
@@ -72,7 +73,10 @@
                                        andTitle:@"Sign up error"];
         } else {
             NSLog(@"User Registed Successfully");
-            [strongSelf performSegueWithIdentifier:@"signupCompleteSegue" sender:nil];
+            SceneDelegate *const sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+            UIStoryboard *const storyboard = [UIStoryboard storyboardWithName:@"Main"
+                                                                       bundle:nil];
+            sceneDelegate.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tabController"];
         }
     }];
 }
