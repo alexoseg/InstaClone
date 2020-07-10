@@ -12,7 +12,11 @@
 #import "MBProgressHUD.h"
 #import "PostBuilder.h"
 
+#pragma mark - Interface
+
 @interface ProfileFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+
+#pragma mark - Properties
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray<PFObject *> *postsArray;
@@ -20,26 +24,25 @@
 
 @end
 
+#pragma mark - Implementation
+
 @implementation ProfileFeedViewController
 
-- (void)viewDidLoad {
+#pragma mark - Lifecycle
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    
-    [self.refreshControl addTarget:self
-                            action:@selector(fetchProfilePosts)
-                  forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:self.refreshControl
-                          atIndex:0];
-    
+    [self setUpViews];
     [MBProgressHUD showHUDAddedTo:self.view
                          animated:YES];
     [self fetchProfilePosts];
 }
 
-- (void)fetchProfilePosts {
+#pragma mark - Networking
+
+- (void)fetchProfilePosts
+{
     typeof(self) __weak weakSelf = self;
     [ParseGetter fetchPostsFromCurrentUserWithCompletion:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         [MBProgressHUD hideHUDForView:weakSelf.view
@@ -60,17 +63,37 @@
     }];
 }
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    InstaCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InstaCell"];
+#pragma mark - Tableview Setup
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView
+                 cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    InstaCell *const cell = [tableView dequeueReusableCellWithIdentifier:@"InstaCell"];
     PFObject *const object = self.postsArray[indexPath.row];
-    Post *post = [PostBuilder buildPostFromPFObject:object];
+    Post *const post = [PostBuilder buildPostFromPFObject:object];
     [cell setUpInstaCellWithPost:post];
     
     return cell;
 }
 
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.postsArray.count;
+- (NSInteger)tableView:(nonnull UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    return _postsArray.count;
+}
+
+#pragma mark - Setup
+
+- (void)setUpViews
+{
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _refreshControl = [[UIRefreshControl alloc] init];
+    [_refreshControl addTarget:self
+                            action:@selector(fetchProfilePosts)
+                  forControlEvents:UIControlEventValueChanged];
+    [_tableView insertSubview:_refreshControl
+                          atIndex:0];
 }
 
 @end

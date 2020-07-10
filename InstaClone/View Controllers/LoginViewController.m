@@ -10,15 +10,26 @@
 #import "MBProgressHUD.h"
 #import "ParsePoster.h"
 
+#pragma mark - Interface
+
 @interface LoginViewController ()
+
+#pragma mark - Properties
+
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end
 
+#pragma mark - Implementataion
+
 @implementation LoginViewController
 
-- (void) displayAlertWithMessage:(NSString *)alertMessage andTitle:(NSString *)titleMessage{
+#pragma mark - Alert Control
+
+- (void) displayAlertWithMessage:(NSString *)alertMessage
+                        andTitle:(NSString *)titleMessage
+{
     UIAlertController *const alert = [UIAlertController alertControllerWithTitle:titleMessage
                                                                          message:alertMessage
                                                                   preferredStyle:UIAlertControllerStyleAlert];
@@ -31,12 +42,14 @@
                      completion:nil];
 }
 
-- (IBAction)loginUser:(id)sender {
+#pragma mark - Tap Gesture Networking
+
+- (IBAction)loginUser:(id)sender
+{
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder)
                                                to:nil
                                              from:nil
                                          forEvent:nil];
-    
     typeof(self) __weak weakSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view
                          animated:YES];
