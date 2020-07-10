@@ -10,7 +10,6 @@
 #import <Parse/Parse.h>
 #import "SceneDelegate.h"
 #import "InstaCell.h"
-#import "Post.h"
 #import "InstaDetailsViewContoller.h"
 #import "MBProgressHUD.h"
 #import "PostBuilder.h"
@@ -19,8 +18,8 @@
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *posts;
-@property (strong, nonatomic) UIRefreshControl* refreshControl;
+@property (strong, nonatomic) NSArray<PFObject *> *posts;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
@@ -32,10 +31,16 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:self.refreshControl atIndex:0];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.refreshControl addTarget:self
+                            action:@selector(fetchPosts)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    [self.tableView insertSubview:self.refreshControl
+                          atIndex:0];
+    
+    [MBProgressHUD showHUDAddedTo:self.view
+                         animated:YES];
     [self fetchPosts];
 }
 
@@ -47,7 +52,8 @@
             return;
         }
         
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view
+                             animated:YES];
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {
@@ -64,7 +70,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     InstaCell *const cell = [tableView dequeueReusableCellWithIdentifier:@"InstaCell"];
     PFObject *const object = self.posts[indexPath.row];
-    Post *post = [PostBuilder buildPostFromPFObject:object];
+    Post *const post = [PostBuilder buildPostFromPFObject:object];
     [cell setUpInstaCellWithPost:post];
     return cell;
 }
@@ -81,23 +87,23 @@
 #pragma mark - OTHER FEATURES
 
 - (IBAction)onLogout:(id)sender {
-    NSLog(@"Logout pressed");
-      [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-          SceneDelegate *const sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-          
-          UIStoryboard *const storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-          UIViewController *const viewController = [storyboard instantiateViewControllerWithIdentifier:@"EntryViewController"];
-          sceneDelegate.window.rootViewController = viewController;
-      }];
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        
+        SceneDelegate *const sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+        UIStoryboard *const storyboard = [UIStoryboard storyboardWithName:@"Main"
+                                                                   bundle:nil];
+        
+        UIViewController *const viewController = [storyboard instantiateViewControllerWithIdentifier:@"EntryViewController"];
+        sceneDelegate.window.rootViewController = viewController;
+    }];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
     if(!self.isMoreDataLoading){
-
-        int scrollViewContentHeight = self.tableView.contentSize.height;
-        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
-
+        
+        int const scrollViewContentHeight = self.tableView.contentSize.height;
+        int const scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
             self.isMoreDataLoading = YES;
             [self loadMoreData];
@@ -106,8 +112,7 @@
 }
 
 - (void)loadMoreData {
-    
-    PFObject const *lastObject = self.posts[self.posts.count - 1];
+    PFObject *const lastObject = self.posts[self.posts.count - 1];
     typeof(self) __weak weakSelf = self;
     
     [ParseGetter fetchPostsBefore:lastObject.createdAt
@@ -133,11 +138,11 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([[segue identifier] isEqualToString:@"detailsSegue"]){
-        UITableViewCell *tappedCell = sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    if ([[segue identifier] isEqualToString:@"detailsSegue"]) {
+        UITableViewCell *const tappedCell = sender;
+        NSIndexPath *const indexPath = [self.tableView indexPathForCell:tappedCell];
         PFObject *const object = self.posts[indexPath.row];
-        Post *post = [PostBuilder buildPostFromPFObject:object]; 
+        Post *const post = [PostBuilder buildPostFromPFObject:object];
         InstaDetailsViewContoller *const destinationViewController = [segue destinationViewController];
         destinationViewController.post = post;
     }

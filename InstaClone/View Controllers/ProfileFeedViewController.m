@@ -8,7 +8,6 @@
 
 #import "ProfileFeedViewController.h"
 #import "InstaCell.h"
-#import <Parse/Parse.h>
 #import "ParseGetter.h"
 #import "MBProgressHUD.h"
 #import "PostBuilder.h"
@@ -16,7 +15,7 @@
 @interface ProfileFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *postsArray;
+@property (strong, nonatomic) NSArray<PFObject *> *postsArray;
 @property (strong, nonatomic) UIRefreshControl* refreshControl;
 
 @end
@@ -27,23 +26,25 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
     self.refreshControl = [[UIRefreshControl alloc] init];
-     [self.refreshControl addTarget:self action:@selector(fetchProfilePosts) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:self.refreshControl atIndex:0];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.refreshControl addTarget:self
+                            action:@selector(fetchProfilePosts)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl
+                          atIndex:0];
+    
+    [MBProgressHUD showHUDAddedTo:self.view
+                         animated:YES];
     [self fetchProfilePosts];
 }
 
 - (void)fetchProfilePosts {
-    
     typeof(self) __weak weakSelf = self;
     [ParseGetter fetchPostsFromCurrentUserWithCompletion:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        
-        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        [MBProgressHUD hideHUDForView:weakSelf.view
+                             animated:YES];
         typeof(weakSelf) strongSelf = weakSelf;
-        
         if (strongSelf == nil) {
             return;
         }
@@ -55,7 +56,6 @@
             strongSelf.postsArray = objects;
             [strongSelf.tableView reloadData];
         }
-        
         [strongSelf.refreshControl endRefreshing];
     }];
 }
@@ -72,16 +72,5 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.postsArray.count;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 @end
